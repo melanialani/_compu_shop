@@ -1,0 +1,13 @@
+
+banner bisa di-edit di admin (master banner)
+
+transfer atm 
+no.resi
+status pengiriman ganti, kirim email lagi
+
+recommended -> tampilkan yg sama kategorinya
+voucher -> status sudah dipake/belum -> cuma dipake 1x
+
+link item diganti nama barang (sendy)
+
+edit varian barang diganti tab (devi)
