@@ -16,6 +16,7 @@
 			<li><a href="<?php echo base_url('index.php/admin/masterOrder'); ?>"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Master Order</a></li>
 			<li><a href="<?php echo base_url('index.php/admin/masterUser'); ?>"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Master User</a></li>
 			<li><a href="<?php echo base_url('index.php/admin/masterVoucher'); ?>"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Master Voucher</a></li>
+			<li><a href="<?php echo base_url('index.php/admin/masterBanner'); ?>"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Master Banner</a></li>
 			
 			<li role="presentation" class="divider"></li>
 			

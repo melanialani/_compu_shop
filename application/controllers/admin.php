@@ -1,35 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
-* Created by: Melania Laniwati
-* 		  at: 8 December 2015
-* 
-* Other contributor: Nancy Yonata
-* 
-* About this file:
-* Controls everything back-end (nothing to do with user)
-* Creates website for website's admin
-* 
-* Version controls:
-* v1.0 - 8 December 2015
-* - adds contstruct
-* - adds dashboard function
-* v1.2 - 9 December 2015
-* - adds login function
-* v2.0 - 18 December 2015
-* - adds masterBarang function (Nancy)
-* - adds masterKategori function (Nancy)
-* v2.1 - 24 December 2015
-* - adds masterOrder function (Nancy)
-* v3.0 - 25 December 2015
-* - adds laporanTransaksi function
-* - adds laporanUser function
-* - adds laporanDilihat function
-* v3.1 - 26 December 2015
-* - adds laporanDibeli function
-* - adds laporanPemasukan function
-*/
-
 class Admin extends CI_Controller {
 	
 	/**
@@ -375,6 +345,52 @@ class Admin extends CI_Controller {
 			$this->load->view('order_view', $data);
 			$this->load->view('includes/footer_empty');
 		} 
+		else { // no it's not admin, go back to login page
+			$this->login();
+		}
+	}
+	
+	public function masterBanner(){
+		// checks if it's admin
+		if ($this->model_user->is_admin($this->input->cookie('proyek'))){
+				
+			// get information from form view
+			$data['id'] = $this->input->post('id');
+			$data['nama'] = $this->input->post('nama');
+			$data['potongan_harga'] = $this->input->post('potongan_harga');
+			$data['awal'] = $this->input->post('awal');
+			$data['akhir'] = $this->input->post('akhir');
+			$data['status'] = $this->input->post('status');
+				
+			// insert button on click
+			if ($this->input->post('insert')){
+				$this->model_voucher->insert_voucher($data['nama'], $data['potongan_harga'], $data['awal'], $data['akhir']);
+				//$data['message'] = "<div class='alert bg-danger' role='alert'><svg class='glyph stroked cancel'><use xlink:href='#stroked-cancel'></use></svg>Insert failed</div>";
+			}
+				
+			// update button on click -> go to update_voucher page
+			if ($this->input->post('update')){
+				$this->updateVoucher($data['id']);
+			}
+				
+			// load page as usual
+			else {
+				// set page title
+				$data['title'] = "Master Voucher";
+	
+				// set username from cookie
+				$data['username'] = $this->input->cookie('proyek');
+	
+				// get information from database
+				$data['tabelVoucher'] = $this->model_voucher->get_all_voucher();
+	
+				// loads views
+				$this->load->view('includes/header', $data);
+				$this->load->view('includes/navbar', $data);
+				$this->load->view('masters/master_voucher', $data);
+				$this->load->view('includes/footer_empty');
+			}
+		}
 		else { // no it's not admin, go back to login page
 			$this->login();
 		}
