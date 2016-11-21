@@ -18,6 +18,7 @@ class Admin extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->library('pagination');
 		$this->load->library('gcharts');
+		$this->load->library('upload');
 		
 		$this->load->model('model_user');
 		$this->load->model('model_voucher');
@@ -353,41 +354,60 @@ class Admin extends CI_Controller {
 	public function masterBanner(){
 		// checks if it's admin
 		if ($this->model_user->is_admin($this->input->cookie('proyek'))){
+			
+			// submit button on click
+			if($this->input->post('submit')){
 				
-			// get information from form view
-			$data['id'] = $this->input->post('id');
-			$data['nama'] = $this->input->post('nama');
-			$data['potongan_harga'] = $this->input->post('potongan_harga');
-			$data['awal'] = $this->input->post('awal');
-			$data['akhir'] = $this->input->post('akhir');
-			$data['status'] = $this->input->post('status');
+				// upload promo1
+				$config =  array(
+						'upload_path'     => "./images/", // file upload-an akan masuk di folder files setingkat dengan application, system, user_guide
+						'allowed_types'   => "png",
+						'overwrite'       => TRUE,
+						'file_name'        => "promo1"
+					);	
 				
-			// insert button on click
-			if ($this->input->post('insert')){
-				$this->model_voucher->insert_voucher($data['nama'], $data['potongan_harga'], $data['awal'], $data['akhir']);
-				//$data['message'] = "<div class='alert bg-danger' role='alert'><svg class='glyph stroked cancel'><use xlink:href='#stroked-cancel'></use></svg>Insert failed</div>";
-			}
+				$this->upload->initialize($config);
 				
-			// update button on click -> go to update_voucher page
-			if ($this->input->post('update')){
-				$this->updateVoucher($data['id']);
-			}
+				if ($this->upload->do_upload('foto1')){ // foto sesuai nama di view-nya
+					$data['conf'] = 'Successfully updated first banner';
+				} else {
+					$data['conf'] = $this->upload->display_errors();
+				}
+				
+				// upload promo2
+				$config =  array(
+						'upload_path'     => "./images/", // file upload-an akan masuk di folder files setingkat dengan application, system, user_guide
+						'allowed_types'   => "png",
+						'overwrite'       => TRUE,
+						'file_name'        => "promo2"
+				);
+				
+				$this->upload->initialize($config);
+				
+				if ($this->upload->do_upload('foto2')){ // foto sesuai nama di view-nya
+					$data['conf'] = 'Sucessfully updated second banner';
+				} else {
+					$data['conf'] = $this->upload->display_errors();
+				}
+			
+				$this->dashboard();
+			} 
 				
 			// load page as usual
 			else {
 				// set page title
-				$data['title'] = "Master Voucher";
+				$data['title'] = "Master Banner";
 	
 				// set username from cookie
 				$data['username'] = $this->input->cookie('proyek');
-	
-				// get information from database
-				$data['tabelVoucher'] = $this->model_voucher->get_all_voucher();
+				
+				// null error message
+				$data['conf'] = "";
 	
 				// loads views
 				$this->load->view('includes/header', $data);
 				$this->load->view('includes/navbar', $data);
-				$this->load->view('masters/master_voucher', $data);
+				$this->load->view('masters/master_banner', $data);
 				$this->load->view('includes/footer_empty');
 			}
 		}
