@@ -60,6 +60,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+            	<li><?php echo anchor('orders/confirmation','Payment Confirmation', 'id="confirmation"');?></li>
                 <li >
                         <?php
                         if (!$this->session->userdata('p_username')) {

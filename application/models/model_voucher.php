@@ -68,6 +68,18 @@ class Model_Voucher extends CI_Model {
         return $this->db->affected_rows();
 	}
 	
+	public function update_used_voucher($id){
+		$myArr = array(
+				'akhir' => '1945-08-17',
+				'status' => 0
+		);
+	
+		$this->db->where('id', $id);
+		$this->db->update('vouchers', $myArr);
+	
+		return $this->db->affected_rows();
+	}
+	
 }
 
 ?>

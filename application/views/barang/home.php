@@ -58,7 +58,7 @@
                 }
                 ?>
             </p>
-            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
+            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id'].'/'.$product['nama']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
             <?php echo"</div>".
                 "</div>".
                 "</div>";
@@ -89,7 +89,7 @@
                 }
                 ?>
             </p>
-            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
+            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id'].'/'.$product['nama']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
             <?php echo"</div>".
                 "</div>".
                 "</div>";
@@ -120,7 +120,7 @@
                 }
                 ?>
             </p>
-            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
+            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id'].'/'.$product['nama']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
             <?php echo"</div>".
                 "</div>".
                 "</div>";

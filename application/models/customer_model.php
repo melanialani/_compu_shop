@@ -162,7 +162,7 @@ class Customer_model extends CI_Model{
     }
     public function getListProvince(){
         $this->load->library('curl');
-        $arr = json_decode($this->curl->simple_get('http://api.rajaongkir.com/starter/province',['key' => 'aa9e53551783cc4033336ff25586148f']));
+        $arr = json_decode($this->curl->simple_get('http://api.rajaongkir.com/starter/province',['key' => '967981f611f67c550e56affde8f2ac29']));
         $arrProvince = $arr->rajaongkir->results;
         $provinces = [];
         foreach ($arrProvince as $province){
@@ -173,7 +173,7 @@ class Customer_model extends CI_Model{
     public function getListCity($province_id){
         $this->load->library('curl');
         $arr = json_decode($this->curl->simple_get('http://api.rajaongkir.com/starter/city',
-            ['key' => 'aa9e53551783cc4033336ff25586148f',
+            ['key' => '967981f611f67c550e56affde8f2ac29',
                 'province' => $province_id
             ]
         ));

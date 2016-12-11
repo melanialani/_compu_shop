@@ -20,6 +20,12 @@
 		</div><!--/.row-->
 		<br>
 		<div class="row">
+			<ul class="nav nav-tabs">
+				<li><a href="#">Edit Detail Barang</a></li>
+				<li class="active"><a href="#">Edit Gambar Barang</a></li>
+			</ul>
+		</div>
+		<div class="row">
 			<div class="col-lg-12">
 				
 				<div class="panel panel-primary">

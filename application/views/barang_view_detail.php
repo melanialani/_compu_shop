@@ -18,14 +18,21 @@
 				<li class="active"><?php echo $title; ?></li>
 			</ol>
 		</div><!--/.row-->
+		<?php echo form_open('barang/editBarangStep1'); ?>
 		<br>
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#">Edit Detail Barang</a></li>
+				<li><?php echo form_submit(['id'=>'btnNext', 'name'=>'btnNext', 'class'=>'btn btn-primary btn-lg'], 'Edit Gambar Barang');?></li>
+			</ul>
+		</div>
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-primary">
 				  <div class="panel-heading">Edit Detail Barang</div>
 				  <div class="panel-body">
 					
-					<?php echo form_open('barang/editBarangStep1'); ?>
+					
 					<?php foreach ($detail as $row){ ?>
 							<div class= 'row'>
 							<div class = 'col-md-12 col-xs-12 col-sm-12'>
@@ -190,15 +197,7 @@
 						</div>
 					</div>
 					<br>
-					<div class = 'row'>
-						<div class = 'col-md-12 col-xs-12 col-xs-12 col-sm-12'>
-							<div class= 'pull-right'>
-								<?php echo form_submit(['id'=>'btnNext', 'name'=>'btnNext', 'class'=>'btn btn-primary btn-sm'], 'Next');?>
-							</div>
-						</div>
-					</div>
-					
-					
+
 					<?php echo form_close(); ?>
 				  </div>
 				</div>

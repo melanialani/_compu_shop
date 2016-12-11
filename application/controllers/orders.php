@@ -107,6 +107,7 @@ class Orders extends CI_Controller {
                 $potongan_harga = 0;
                 if ($temp != -1 && $temp != -2){
                     $potongan_harga = $temp;
+                    $this->voucher_model->update_used_voucher($this->input->post('voucher_id')); // update status voucher to 0
                 }
                 $hargaTotal = $this->cart->total();
                 $grandTotal = $this->cart->total() + $ongkir - $potongan_harga;
@@ -165,7 +166,7 @@ class Orders extends CI_Controller {
                 $totalGram = $totalGram + $product_options['berat_gram'] * $item['qty'];
             }
             $arr = json_decode($this->curl->simple_post('http://api.rajaongkir.com/starter/cost',
-                ['key' => 'aa9e53551783cc4033336ff25586148f',
+                ['key' => '967981f611f67c550e56affde8f2ac29',
                     'origin' => 444,
                     'destination' => $this->session->userdata('kota_penerima_id'),
                     'weight' => $totalGram,
@@ -197,7 +198,7 @@ class Orders extends CI_Controller {
             $totalGram = $totalGram + $product_options['berat_gram'] * $item['qty'];
         }
         $arr = json_decode($this->curl->simple_post('http://api.rajaongkir.com/starter/cost',
-            ['key' => 'aa9e53551783cc4033336ff25586148f',
+            ['key' => '967981f611f67c550e56affde8f2ac29',
                 'origin' => 444,
                 'destination' => $this->session->userdata('kota_penerima_id'),
                 'weight' => $totalGram,
