@@ -60,7 +60,6 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-            	<li><?php echo anchor('orders/confirmation','Payment Confirmation', 'id="confirmation"');?></li>
                 <li >
                         <?php
                         if (!$this->session->userdata('p_username')) {
@@ -90,8 +89,10 @@
 
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="access_link">  <?php echo $this->session->userdata('p_username');?></a>
                             <ul class="dropdown-menu">
+								
                                 <li><?php echo anchor('profile','Profile');?></li>
-                                <li><?php echo anchor('profile/order','My Order');?></li>
+                                <li><?php echo anchor('profile/wish_list','My Wishlist');?></li>
+								<li><?php echo anchor('profile/order','My Order');?></li>
                                 <li role="separator" class="divider"></li>
                                 <li><?php echo anchor('profile/do_logout','Log out');?></li>
                             </ul>

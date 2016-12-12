@@ -181,5 +181,37 @@ class Profile extends CI_Controller {
         $this->load->view('user/order_list',$data);
         $this->load->view('footer');
     }
+	
+	public function wish_list()
+	{// WISH LIST
+		$data['title'] = 'My Wishlist ';
+		$this->load->model('model_wish_list','wish');
+		if($this->input->post('add'))
+		{
+			$id_barang = $this->input->post('id_barang');
+			$data = [
+				'username'	=> $this->session->userdata('p_username'),
+				'id_barang'	=> $id_barang,
+			];
+			$this->wish->insert($data);
+			//redirect("items/detail/$id_barang"); // redirect pasti ganti
+			echo '<script language="javascript">';
+			echo 'alert("Barang Masuk Wishlist")';
+			echo '</script>';
+		}
+		$remove = $this->input->post('remove');
+		var_dump($remove);
+		if( ! empty($remove))
+		{
+			$this->wish->remove($this->session->userdata('p_username'),$remove);
+		}
+		$data['user_id'] = $this->session->userdata('p_username');
+		//var_dump($this->session->userdata('p_username'));
+		$data['list_wish'] = $this->wish->get_wish($this->session->userdata('p_username'));//belum paging
+		$this->load->view('header',$data);
+		$this->load->view('user/wish_list',$data);
+		$this->load->view('footer');
+	}
+	
 
 }

@@ -101,7 +101,18 @@
                 <!-- share facebook and twitter-->
                 <div class="fb-share-button" data-href="<?php echo site_url('item/detail/'.$barang['id']);?>" data-layout="button_count"></div>
                 <a href="http://twitter.com/home?status=Buy now! <?php echo site_url('item/detail/'.$barang['id']);?>" title="Click to share this post on Twitter"><i class='fa fa-twitter'></i>Share to Twitter</a><br/><br/>
-				<div class="btn btn-sm btn-info"><?php $id = $barang['id']; echo anchor("items/compare?comp1=$id","Compare","style = 'text-decoration: none; color: #FFFFFF'"); ?></div>
+				<div class="btn btn-sm btn-info"><?php $id = $barang['id']; echo anchor("items/compare?comp1=$id","Compare","style = 'text-decoration: none; color: #FFFFFF'"); ?>
+				</div>
+				<br>
+				<?php
+                    if ($this->session->userdata('p_username')) {
+                        // TOMBOL WISH LIST
+						echo form_open('profile/wish_list',"",['id_barang' => $barang['id']]);
+						echo '<input type="submit" name="add" value="Add to Wish List" class="btn btn-default">';
+						echo form_close();		
+					}
+				?>
+				
             </div><!--/product-information-->
         </div>
     </div><!--/product-details-->
@@ -165,7 +176,7 @@
                 }
                 ?>
             </p>
-            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id'].'/'.$product['nama']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
+            <p class='text-center'><a href="<?php echo base_url('items/detail/'.$product['id']) ;?>" class="btn btn-primary btn-sm" role="button">View Item</a></p>
             <?php echo"</div>".
                 "</div>".
                 "</div>";

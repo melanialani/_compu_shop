@@ -4,7 +4,7 @@ class Payment extends  CI_Controller{
 
     public function __construct(){
         parent::__construct();
-        $params = array('server_key' => 'VT-server-60EkrYm1CkNnViim5AdZRuPu', 'production' => false);
+        $params = array('server_key' => 'VT-server-5kCecvzHJpIr4Rakuj9Y8CF_', 'production' => false);
         $this->load->library('veritrans');
         $this->veritrans->config($params);
         $this->load->model('order_model');
